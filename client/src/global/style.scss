@@ -1,0 +1,140 @@
+@import "./library";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  padding: 3rem;
+
+  font-family: $itim;
+}
+
+.app {
+  width: 900px;
+}
+
+.header {
+  h1 {
+    letter-spacing: 4px;
+  }
+}
+
+.commands {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 20px;
+
+  .search-commands {
+    display: flex;
+    align-items: center;
+
+    input {
+      outline: none;
+    }
+
+    :first-child {
+      padding: 4px;
+      padding-left: 25px;
+
+      background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+      background-size: 15px;
+
+      font-family: $itim;
+      font-size: 14px;
+
+      box-shadow: 3px 3px 0 -1px rgba(0, 0, 0, 0.75);
+    }
+
+    #checkbox {
+      margin-left: 10px;
+      margin-right: 5px;
+    }
+  }
+
+  button {
+    width: 110px;
+    height: 30px;
+
+    border: 0.7px solid black;
+
+    font-family: $itim;
+
+    box-shadow: 3px 3px 0 -1px rgba(0, 0, 0, 0.75);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.75);
+      box-shadow: 4px 5px 0 -1px #F0F0F0;
+      color: white;
+      transition: background-color 0.5s, color 0.5s;
+    }
+  }
+}
+
+.modal-overlay {
+
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ececec61;
+}
+
+.modal-content {
+  width: 80%;
+  max-width: 500px;
+  height: auto;
+
+  background-color: #ececec;
+
+  padding: 15px;
+
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.75);
+
+  .btn-modal {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 10px;
+
+    button {
+      font-family: $itim;
+
+      border: 0.7px solid black;
+
+      width: 110px;
+      height: 30px;
+
+      box-shadow: 3px 3px 0 -1px rgba(0, 0, 0, 0.75);
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.75);
+        box-shadow: 4px 5px 0 -1px #F0F0F0;
+        color: white;
+        transition: background-color 0.5s, color 0.5s;
+      }
+    }
+  }
+
+}
+

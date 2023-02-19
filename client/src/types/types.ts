@@ -6,8 +6,7 @@ export interface IData {
   tags: string[]
 }
 
-export interface IInputs {
-  nameLabel: string
-  type: string
-  onchange?: (e: any) => void
+export interface IArrTagID{
+  id: number 
+  tags: string[]
 }

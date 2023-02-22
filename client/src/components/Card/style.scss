@@ -10,6 +10,10 @@
 
   box-shadow: 3px 5px 0 -1px rgba(0, 0, 0, 0.75);
 
+  @media(max-width:900px){
+    width: auto;
+  }
+
   .head {
     display: flex;
     justify-content: space-between;

@@ -15,6 +15,9 @@ h2 {
     box-shadow: 3px 3px 0 -1px rgba(0, 0, 0, 0.75);
 
     font-family: $itim;
+    
+    padding: 5px;
+    padding-left: 10px;
 
     &:focus {
       box-shadow: 3px 3px 0 -1px rgba(0, 0, 0, 0.75);

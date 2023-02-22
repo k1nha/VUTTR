@@ -1,5 +1,16 @@
 ## VUTTR
 
+A Very Useful Tools to Remember
+
+Este é um teste da [BossaBox](https://www.bossabox.com/) disponivel no [repositório](https://github.com/felipefialho/frontend-challenges)
+
+Tecnologias usadas:
+React with Vite
+
+Bibliotecas Externas
+React Modal
+React Icons
+Sass
 
 Informações projeto:
 https://www.notion.so/Front-end-c12adcdbe7a1425dbfbcd5a397b4ff10

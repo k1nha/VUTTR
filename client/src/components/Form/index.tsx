@@ -3,13 +3,17 @@ import './style.scss';
 import axios from "axios";
 import {HiPlusSm} from 'react-icons/hi'
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const initialValues = {
   title: '',
   link: '',
   description: '',
   tags: ''
 }
-export const Form = ({stateChanger}: any) => {
+
+export const Form = ({stateChanger, setData, data}: any) => {
 
   const [values, setValues] = useState(initialValues);
 
@@ -22,13 +26,24 @@ export const Form = ({stateChanger}: any) => {
   }
 
   function addTool() {
-    axios.post('tools', {
+    const body = {
       ...values,
       tags: values.tags.split(" ")
-    })
-      .then()
-      .catch((err) => console.log(err))
-      .finally(() => location.reload());
+    };
+
+    axios.post('tools', body)
+      .then(() => {
+        toast.success("Tool added successfully!");
+        stateChanger(false);
+        setData((prev: any)=> [...prev, body])
+      })
+      .catch((err) => {
+        toast.error(err.message);
+        toast.info("Check your console for more details...");
+        console.log(err);
+      })
+      .finally(() => {
+      });
   }
 
   return (
@@ -49,7 +64,7 @@ export const Form = ({stateChanger}: any) => {
         <label>Tools Link</label>
         <input
           value={values.link}
-          type='url'
+          type='text'
           name='link'
           onChange={handleInputChange}
           required

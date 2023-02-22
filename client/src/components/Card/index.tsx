@@ -3,11 +3,14 @@ import React, {useState} from 'react';
 import {IData} from '../../types/types';
 import Modal from 'react-modal';
 import axios from "axios";
-import {HiX} from 'react-icons/hi';
+import { HiX } from 'react-icons/hi';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Modal.setAppElement('#root');
 
-export const Card = ({id, title, description, link, tags}: IData) => {
+export const Card = ({id, title, description, link, tags, setData, data}: IData) => {
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -19,14 +22,19 @@ export const Card = ({id, title, description, link, tags}: IData) => {
     setIsOpen(false);
   }
 
-  function deleteItem(idCard: number | undefined) {
+  function deleteItem(idCard: number | undefined) {    
     axios.delete(`tools/${idCard}`)
-      .then()
-      .catch((err) => console.log(err))
-      .finally(() => {
-        alert('Item excluido');
+    .then(() => {
+        toast.success('Tool removed...');
+        setData(data.filter(a => a.id !== idCard))
+      })
+      .catch((err) => {
+        toast.error(err.message);
+        toast.info('Check your console for more details...')
+        console.log(err);        
+      })
+      .finally(() => {        
         closeModal();
-        location.reload();
       });
   }
 

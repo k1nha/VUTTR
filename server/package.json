@@ -1,13 +1,12 @@
 {
-  "name": "server",
+  "name": "vuttr-serverside",
   "version": "1.0.0",
-  "description": "",
+  "description": "A project for Very Useful Tools to Remember",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "npx json-server db.json"
   },
-  "keywords": [],
-  "author": "",
+  "author": "lucascmpus",
   "license": "ISC",
   "dependencies": {
     "json-server": "^0.17.1"

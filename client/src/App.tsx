@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useState, useEffect} from 'react';
 import Modal from 'react-modal';
 
 // Components
@@ -9,6 +9,7 @@ import './global/style.scss';
 import {useFetch} from './hooks/useFetch';
 import {Form} from "./components/Form";
 import { IArrTagID } from './types/types';
+import { ToastContainer } from 'react-toastify';
 
 Modal.setAppElement('#root');
 
@@ -26,10 +27,11 @@ export const App = () => {
     setIsOpen(false);
   }
 
-  const {loading, data, error} = useFetch({
+  const {loading, data, error ,setData} = useFetch({
     url: 'tools',
-    method: 'get'
   });
+
+  
 
   const searchResults = useMemo(() => {
     const lowerSearchTerm = searchTerm.toLowerCase();
@@ -37,8 +39,7 @@ export const App = () => {
       if (searchTerm === '') {
         return data;
       } else {
-        let IndexOfTags = -1;
-        // TO-DO: Typing this Array
+        let IndexOfTags: number;
         let ArrIdTags: IArrTagID[] = [];
         data.map(({ tags, id }) => { ArrIdTags.push({ id: Number(id), tags: tags }) });
         ArrIdTags.filter(({id, tags}: any) => {
@@ -48,8 +49,10 @@ export const App = () => {
         })    
         return data.filter(({ id }) => id === IndexOfTags);
       }
-    } else {
+    } else if (searchTerm.length > 0) {
       return data.filter(({ title }) => title.toLowerCase().includes(lowerSearchTerm));
+    } else {
+      return data
     }
   }, [searchTerm, data])
 
@@ -71,7 +74,7 @@ export const App = () => {
           <input
             type="checkbox"
             id='checkbox'
-            onChange={(e) => setSearchTagChecked(!searchTagChecked)}
+            onChange={() => setSearchTagChecked(!searchTagChecked)}
           />
           <p>search in tags only</p>
         </div>
@@ -81,18 +84,18 @@ export const App = () => {
       {loading
         ? <p style={{marginTop: '10px'}}>Loading...</p>
         : searchResults?.map(({id, title, description, link, tags}) => (
-          <Card key={id} id={id} description={description} link={link} tags={tags} title={title}/>
+          <Card key={id} id={id} description={description} link={link} tags={tags} title={title} data={data} setData={setData} />
         ))
       }
-
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         overlayClassName="modal-overlay"
         className="modal-content"
       >
-        <Form stateChanger={setIsOpen}/>
+        <Form stateChanger={setIsOpen} setData={setData} data={data} />
       </Modal>
+      <ToastContainer />
     </div>
   )
 }

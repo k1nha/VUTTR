@@ -1,25 +1,60 @@
-## VUTTR
+<br/>
+<p align="center">
+  <h3 align="center">🛠️ VUTTR 🛠️</h3>
 
-A Very Useful Tools to Remember
+  <p align="center">
+    A Very Useful Tools To Remember
+    <br/>
+    <br/>
+  </p>
+</p>
 
-Este é um teste da [BossaBox](https://www.bossabox.com/) disponivel no [repositório](https://github.com/felipefialho/frontend-challenges)
+## About The Project
 
-Tecnologias usadas:
-React with Vite
+![Screen Shot](https://www.github.com/lucascmpus/vuttr/client/public/preview.png);
 
-Bibliotecas Externas
-React Modal
-React Icons
-Sass
+This is a challenge for Front-End Developer from [BossaBox](https://www.bossabox.com/) available in this [respository](https://github.com/felipefialho/frontend-challenges). If you need more details about this challenge, access the [link](https://www.notion.so/Front-end-c12adcdbe7a1425dbfbcd5a397b4ff10).
 
-Informações projeto:
-https://www.notion.so/Front-end-c12adcdbe7a1425dbfbcd5a397b4ff10
-https://gitlab.com/bossabox/challenge-fake-api/tree/master
+## Built With
 
-https://dev.to/asimdahall/simple-search-form-in-react-using-hooks-42pg
+The project has build with React using Typescript
+And using externals libraries: Axios, React-Modal, React-Toastify and React-Icons
 
+## Getting Started
 
-Fonts:
-1- https://fonts.google.com/specimen/Itim?category=Handwriting
-2- https://www.dafont.com/pt/bosk.font
-3- https://www.dafont.com/pt/ningst-only-peace.font?text=calendar&back=theme
+For run this project, you need to have Node.js   on your machine.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+* npm
+
+```sh
+npm install npm@latest -g
+```
+
+### Installation
+
+1. Clone the repo
+
+```sh
+git clone https://github.com/lucascmpus/vuttr.git
+```
+
+2. Install NPM packages
+
+```sh
+npm install
+```
+
+3. Run server and client side
+
+```sh
+client: npm run dev
+server: npm run server
+```
+
+## Usage
+
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.

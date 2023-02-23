@@ -26,8 +26,6 @@ For run this project, you need to have Node.js   on your machine.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
 * npm
 
 ```sh

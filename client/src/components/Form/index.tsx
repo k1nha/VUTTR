@@ -35,7 +35,8 @@ export const Form = ({stateChanger, setData, data}: any) => {
       .then(() => {
         toast.success("Tool added successfully!");
         stateChanger(false);
-        setData((prev: any)=> [...prev, body])
+        setData((prev: any) => [...prev, body])
+        location.reload();
       })
       .catch((err) => {
         toast.error(err.message);

@@ -30,9 +30,7 @@ export const App = () => {
   const {loading, data, error ,setData} = useFetch({
     url: 'tools',
   });
-
   
-
   const searchResults = useMemo(() => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     if (searchTagChecked) {

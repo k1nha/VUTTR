@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {IData} from '../types/types';
 
 axios.defaults.baseURL = 'http://localhost:3000/';

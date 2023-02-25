@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-  <h3 align="center">🛠️ VUTTR 🛠️</h3>
+  <h1 align="center">🛠️ VUTTR 🛠️</h1>
 
   <p align="center">
     A Very Useful Tools To Remember

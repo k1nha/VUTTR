@@ -11,7 +11,7 @@
 
 ## About The Project
 
-![Screen Shot](https://www.github.com/lucascmpus/vuttr/client/public/preview.png);
+![Screen Shot](https://github.com/lucascmpus/VUTTR/blob/master/client/public/preview.png?raw=true)
 
 This is a challenge for Front-End Developer from [BossaBox](https://www.bossabox.com/) available in this [respository](https://github.com/felipefialho/frontend-challenges). If you need more details about this challenge, access the [link](https://www.notion.so/Front-end-c12adcdbe7a1425dbfbcd5a397b4ff10).
 

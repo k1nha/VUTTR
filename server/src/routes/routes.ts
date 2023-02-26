@@ -1,21 +1,22 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
 import { ToolsController } from '../controllers/ToolsController';
+import { ErrorRequestHandle } from '../middlewares/ErrorMiddleware';
 
 
 const router = express.Router();
 const tools = new ToolsController();
 
+// Get All Tools
 router.get('/tools', tools.getAllTools);
 
+// Get One Tool
 router.get('/tools/:id', tools.getTools);
 
+// Create Tool
 router.post('/tools/', tools.createNewTools);
 
-router.use((err: Error,req: Request, res: Response) => {
-  res.status(404).json({
-    message: "Ohh you are lost, read the API documentation to find your way back home :)",
-    error: err.message
-  });
-});
+// Error
+router.use(ErrorRequestHandle);
+
 
 export { router };

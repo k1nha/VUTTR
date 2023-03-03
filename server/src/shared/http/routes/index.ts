@@ -1,7 +1,5 @@
 import express from 'express';
-import { ToolsController } from '../controllers/ToolsController';
-import { ErrorRequestHandle } from '../middlewares/ErrorMiddleware';
-
+import { ToolsController } from '../../controllers/ToolsController';
 
 const router = express.Router();
 const tools = new ToolsController();
@@ -14,9 +12,5 @@ router.get('/tools/:id', tools.getTools);
 
 // Create Tool
 router.post('/tools/', tools.createNewTools);
-
-// Error
-router.use(ErrorRequestHandle);
-
 
 export { router };

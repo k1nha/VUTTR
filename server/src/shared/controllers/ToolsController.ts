@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { prisma } from '@services/prisma/prisma';
+import { prisma } from '@services/prisma';
 import { z } from 'zod';
 
 export class ToolsController {
-  async getAllTools() {
-    const tools = await prisma.tools.findMany();
-    return { tools };
+  async getAllTools(req: Request, res: Response) {
+    const tools = await prisma.tool.findMany();
+    return res.status(200).json(tools);
   }
 
   async createNewTools(req: Request, res: Response) {
@@ -18,7 +18,7 @@ export class ToolsController {
 
     const { title, link, description, tags } = createToolSchema.parse(req.body);
 
-    await prisma.tools.create({
+    await prisma.tool.create({
       data: {
         title,
         link,
@@ -30,23 +30,16 @@ export class ToolsController {
     return res.status(201).send();
   }
 
-  async getTool(req: Request, res: Response) {
-    const toolSchema = z.object({
-      id: z.number().positive(),
-    });
+  async deleteTools(req: Request, res: Response) {
+    // TO-DO: Use Zod to validate
+    const { id } = req.params;
 
-    const { id } = toolSchema.parse(req.body);
-
-    const idSearch = await prisma.tools.findUnique({
+    await prisma.tool.delete({
       where: {
-        id,
+        id: +id,
       },
     });
 
-    return { idSearch };
-  }
-
-  async deleteTools(req: Request, res: Response) {
-    return res.status(204).json({ message: 'Tool Delected' });
+    return res.status(204).send();
   }
 }

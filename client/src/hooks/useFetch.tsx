@@ -1,21 +1,22 @@
-import axios from 'axios';
-import {useEffect, useState} from 'react';
-import {IData} from '../types/types';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { IData } from "../types/types";
 
-axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.baseURL = "http://localhost:3030/";
 
 interface useFetchProps {
-  url: string
+  url: string;
 }
 
-const useFetch = ({url}: useFetchProps) => {
+const useFetch = ({ url }: useFetchProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<IData[]>([]);
   const [error, setError] = useState<Error | null>(null);
 
   function fetchData() {
-    axios.get(`${url}`)
-      .then((res) => setData( res.data ))
+    axios
+      .get(`${url}`)
+      .then((res) => setData(res.data))
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
   }
@@ -24,8 +25,7 @@ const useFetch = ({url}: useFetchProps) => {
     fetchData();
   }, []);
 
-  return {loading, data, error, setData};
+  return { loading, data, error, setData };
+};
 
-}
-
-export {useFetch};
+export { useFetch };

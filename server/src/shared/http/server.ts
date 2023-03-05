@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
+import 'express-async-errors';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
@@ -27,7 +28,7 @@ app.use(
 
     return response.status(500).json({
       status: 'error',
-      message: 'Internal server error',
+      message: `Internal server error - ${error.message}}`,
     });
   },
 );

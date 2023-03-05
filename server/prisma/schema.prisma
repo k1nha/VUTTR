@@ -11,12 +11,20 @@ datasource db {
 }
 
 model Tool {
-  id          Int      @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   title       String
   link        String
   description String
-  tags        String
-  created_at  DateTime @default(now())
+  tags        TagsTool[]
+  created_at  DateTime   @default(now())
 
   @@map("tools")
+}
+
+model TagsTool {
+  toolId  Int    @id @default(autoincrement())
+  Tool    Tool   @relation(fields: [toolId], references: [id])
+  tagName String
+
+  @@map("tags_tool")
 }

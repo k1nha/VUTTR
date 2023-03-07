@@ -29,6 +29,8 @@ export const Card = ({
     setIsOpen(false);
   }
 
+  const tagsSplited = tags.split(" ");
+
   function deleteItem(idCard: number | undefined) {
     axios
       .delete(`tools/${idCard}`)
@@ -59,8 +61,8 @@ export const Card = ({
 
       <p>{description}</p>
       <h5 className="tag">
-        {tags.map((item) => (
-          <span>#{item} </span>
+        {tagsSplited.map((item) => (
+          <span key={item}>#{item} </span>
         ))}
       </h5>
 

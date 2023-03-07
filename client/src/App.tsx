@@ -1,22 +1,21 @@
-import React, {useMemo, useState, useEffect} from 'react';
-import Modal from 'react-modal';
+import React, { useMemo, useState, useEffect } from "react";
+import Modal from "react-modal";
 
 // Components
-import {Card} from './components/Card';
+import { Card } from "./components/Card";
 
 // Styles
-import './global/style.scss';
-import {useFetch} from './hooks/useFetch';
-import {Form} from "./components/Form";
-import { IArrTagID } from './types/types';
-import { ToastContainer } from 'react-toastify';
+import "./global/style.scss";
+import { useFetch } from "./hooks/useFetch";
+import { Form } from "./components/Form";
+import { IArrTagID } from "./types/types";
+import { ToastContainer } from "react-toastify";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 export const App = () => {
-
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchTagChecked, setSearchTagChecked] = useState(false);
 
   function openModal() {
@@ -27,35 +26,39 @@ export const App = () => {
     setIsOpen(false);
   }
 
-  const {loading, data, error ,setData} = useFetch({
-    url: 'tools',
+  const { loading, data, error, setData } = useFetch({
+    url: "tools",
   });
-  
+
   const searchResults = useMemo(() => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     if (searchTagChecked) {
-      if (searchTerm === '') {
+      if (searchTerm === "") {
         return data;
       } else {
         let IndexOfTags: number;
         let ArrIdTags: IArrTagID[] = [];
-        data.map(({ tags, id }) => { ArrIdTags.push({ id: Number(id), tags: tags }) });
-        ArrIdTags.filter(({id, tags}: any) => {
+        data.map(({ tags, id }) => {
+          ArrIdTags.push({ id: Number(id), tags: tags });
+        });
+        ArrIdTags.filter(({ id, tags }: any) => {
           if (tags.includes(lowerSearchTerm)) {
             IndexOfTags = id;
-          } 
-        })    
+          }
+        });
         return data.filter(({ id }) => id === IndexOfTags);
       }
     } else if (searchTerm.length > 0) {
-      return data.filter(({ title }) => title.toLowerCase().includes(lowerSearchTerm));
+      return data.filter(({ title }) =>
+        title.toLowerCase().includes(lowerSearchTerm)
+      );
     } else {
-      return data
+      return data;
     }
-  }, [searchTerm, data])
+  }, [searchTerm, data]);
 
   return (
-    <div className='app'>
+    <div className="app">
       <div className="header">
         <h1>VUTTR</h1>
         <p>Very Useful Tools to Remember</p>
@@ -65,13 +68,13 @@ export const App = () => {
         <div className="search-commands">
           <input
             type="text"
-            placeholder='search'
+            placeholder="search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <input
             type="checkbox"
-            id='checkbox'
+            id="checkbox"
             onChange={() => setSearchTagChecked(!searchTagChecked)}
           />
           <p>search in tags only</p>
@@ -79,21 +82,30 @@ export const App = () => {
         <button onClick={openModal}>+ Add</button>
       </div>
 
-      {loading
-        ? <p style={{marginTop: '10px'}}>Loading...</p>
-        : searchResults?.map(({id, title, description, link, tags}) => (
-          <Card key={id} id={id} description={description} link={link} tags={tags} title={title} data={data} setData={setData} />
+      {loading ? (
+        <p style={{ marginTop: "10px" }}>Loading...</p>
+      ) : (
+        searchResults?.map(({ id, title, description, link, tags }) => (
+          <Card
+            key={id}
+            id={id}
+            description={description}
+            link={link}
+            tags={tags}
+            title={title}
+            data={data}
+            setData={setData}
+          />
         ))
-      }
+      )}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         overlayClassName="modal-overlay"
-        className="modal-content"
-      >
+        className="modal-content">
         <Form stateChanger={setIsOpen} setData={setData} data={data} />
       </Modal>
       <ToastContainer />
     </div>
-  )
-}
+  );
+};

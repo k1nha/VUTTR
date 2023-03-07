@@ -1,92 +1,92 @@
-import React, {useState} from 'react';
-import './style.scss';
+import React, { useState } from "react";
+import "./style.scss";
 import axios from "axios";
-import {HiPlusSm} from 'react-icons/hi'
+import { HiPlusSm } from "react-icons/hi";
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialValues = {
-  title: '',
-  link: '',
-  description: '',
-  tags: ''
-}
+  title: "",
+  link: "",
+  description: "",
+  tags: "",
+};
 
-export const Form = ({stateChanger, setData, data}: any) => {
-
+export const Form = ({ stateChanger, setData, data }: any) => {
   const [values, setValues] = useState(initialValues);
 
   const handleInputChange = (e: any) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setValues({
       ...values,
       [name]: value,
-    })
-  }
+    });
+  };
 
   function addTool() {
-    const body = {
-      ...values,
-      tags: values.tags.split(" ")
-    };
 
-    axios.post('tools', body)
+    axios
+      .post("tools", values, {
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      })
       .then(() => {
         toast.success("Tool added successfully!");
         stateChanger(false);
-        setData((prev: any) => [...prev, body])
-        location.reload();
+        setData((prev: any) => [...prev, values]);
+        // location.reload();
       })
       .catch((err) => {
-        toast.error(err.message);
+        toast.error(err.response.data);
         toast.info("Check your console for more details...");
         console.log(err);
       })
-      .finally(() => {
-      });
+      .finally(() => {});
   }
 
   return (
     <>
-      <h2><HiPlusSm/>Add new tool</h2>
+      <h2>
+        <HiPlusSm />
+        Add new tool
+      </h2>
 
-      <div className='inputs'>
+      <div className="inputs">
         <label>Tools Name</label>
         <input
           value={values.title}
-          type='text'
-          name='title'
+          type="text"
+          name="title"
           onChange={handleInputChange}
           required
         />
       </div>
-      <div className='inputs'>
+      <div className="inputs">
         <label>Tools Link</label>
         <input
           value={values.link}
-          type='text'
-          name='link'
+          type="text"
+          name="link"
           onChange={handleInputChange}
           required
         />
       </div>
-      <div className='inputs'>
+      <div className="inputs">
         <label>Tools Description</label>
         <input
           value={values.description}
-          type='text'
-          name='description'
+          type="text"
+          name="description"
           onChange={handleInputChange}
           required
         />
       </div>
-      <div className='inputs'>
+      <div className="inputs">
         <label>Tags</label>
         <input
           value={values.tags}
-          type='text'
-          name='tags'
+          type="text"
+          name="tags"
           onChange={handleInputChange}
           required
         />
@@ -96,7 +96,5 @@ export const Form = ({stateChanger, setData, data}: any) => {
         <button onClick={addTool}>Add Toll</button>
       </div>
     </>
-  )
-}
-
-
+  );
+};

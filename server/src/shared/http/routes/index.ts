@@ -8,7 +8,7 @@ const tools = new ToolsController();
 router.get('/tools', tools.getAllTools);
 
 // Create Tool
-router.post('/tools/', tools.createNewTools);
+router.post('/tools', tools.createNewTools);
 
 // Delete Tool
 router.delete('/tools/:id', tools.deleteTools);

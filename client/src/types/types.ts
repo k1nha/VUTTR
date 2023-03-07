@@ -3,13 +3,13 @@ export interface IData {
   title: string
   link: string
   description: string
-  tags: string[]
+  tags: string
   setData: any
   data: IData[]
 }
 
-export interface IArrTagID{
-  id: number 
+export interface IArrTagID {
+  id: number
   tags: string[]
 }
 

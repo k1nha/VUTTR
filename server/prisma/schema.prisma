@@ -15,16 +15,8 @@ model Tool {
   title       String
   link        String
   description String
-  tags        TagsTool[]
+  tags        String
   created_at  DateTime   @default(now())
 
   @@map("tools")
-}
-
-model TagsTool {
-  toolId  Int    @id @default(autoincrement())
-  Tool    Tool   @relation(fields: [toolId], references: [id])
-  tagName String
-
-  @@map("tags_tool")
 }

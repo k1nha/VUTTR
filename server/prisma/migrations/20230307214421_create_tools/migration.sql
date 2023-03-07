@@ -1,6 +1,6 @@
 -- CreateTable
-CREATE TABLE `Tool` (
-    `id` VARCHAR(191) NOT NULL,
+CREATE TABLE `tools` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
     `link` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NOT NULL,

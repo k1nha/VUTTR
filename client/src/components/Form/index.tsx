@@ -6,6 +6,14 @@ import { HiPlusSm } from "react-icons/hi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { IData } from "../../types/types";
+
+interface FormProps {
+  stateChanger: (isOpen: boolean) => void;
+  setData: (data: IData[]) => void;
+  data: IData[];
+}
+
 const initialValues = {
   title: "",
   link: "",
@@ -13,10 +21,10 @@ const initialValues = {
   tags: "",
 };
 
-export const Form = ({ stateChanger, setData, data }: any) => {
+export const Form = ({ stateChanger, setData, data }: FormProps) => {
   const [values, setValues] = useState(initialValues);
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -33,7 +41,9 @@ export const Form = ({ stateChanger, setData, data }: any) => {
       .then(() => {
         toast.success("Tool added successfully!");
         stateChanger(false);
-        setData((prev: any) => [...prev, values]);
+        let newData = data;
+        newData.push(values as IData); // TODO: set the correct type and values
+        setData(newData);
         // location.reload();
       })
       .catch((err) => {
